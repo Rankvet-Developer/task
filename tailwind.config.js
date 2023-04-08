@@ -8,6 +8,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
+  darkMode: 'class',
   theme: {
     screens: {
       'sm': {'min': '350px', 'max': '767px'},
@@ -26,6 +27,9 @@ module.exports = {
       'gray-dark': '#273444',
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
+      'dark':'#0F123D',
+      'light':'#fff',
+      'black':'#000'
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
