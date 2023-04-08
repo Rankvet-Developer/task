@@ -21,3 +21,6 @@ html,body{
 img{
   display: inline;
 }
+li{
+  list-style: none;
+}

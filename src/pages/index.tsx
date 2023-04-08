@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic'
 import About from '@/components/About/About'
 import Offer from '@/components/Offer/Offer'
 import Contact from '@/components/Contact/Contact'
+import Footer from '@/components/Footer/Footer'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <About/>
       <Offer/>
       <Contact/>
+      <Footer/>
     </main>
   )
 }
