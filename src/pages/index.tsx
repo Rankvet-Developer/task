@@ -4,6 +4,8 @@ import HeroSection from '@/components/HeroSection/HeroSection'
 import Navbar from '@/components/Navigation/Navbar'
 import React from 'react'
 import dynamic from 'next/dynamic'
+import About from '@/components/About/About'
+import Offer from '@/components/Offer/Offer'
 
 export default function Home() {
   return (
@@ -12,6 +14,8 @@ export default function Home() {
       <HeroSection/>
       <Category/>
       <Explore/>
+      <About/>
+      <Offer/>
     </main>
   )
 }

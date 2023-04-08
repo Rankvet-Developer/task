@@ -18,3 +18,6 @@ html,body{
 .slick-next:before, .slick-prev:before {
   display: none;
 }
+img{
+  display: inline;
+}
