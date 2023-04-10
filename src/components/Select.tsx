@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 // let divOption = [
@@ -28,48 +28,36 @@ export default function Select() {
     { data: "a4" },
   ]);
 
-  const [insert, setInsert] = useState(null);
+  const [insert, setInsert] = useState("");
 
-  const addTags = (e: any) => {
-    // console.log(e.target.value);
-    // if (e.key === "Enter" && e.target.value !== "") {
-    //   // setDivOption(prevState => [...prevState, {data:e.target.value}]);
-    //   setTags([...tags, e?.target.value, insert]);
-    //   //   tags.filter((item) => setDivOption(item => [...item, {data}]) )
-    //   e.target.value = "";
-    // } else {
-    //   if (tags.indexOf(e.target.textContent) === -1) {
-    //     setTags([...tags, e.target.textContent]);
-    //   }
-    // }
-  };
-  console.log(tags)
   const removeTags = (indexRemove: any) => {
     setTags(tags.filter((_, index) => index !== indexRemove));
   };
 
-  const handleToggle = (e:any, indexRemove: any) => {
-    if (e.key === "Enter" && e.target.value !== "") {
-        // setDivOption(prevState => [...prevState, {data:e.target.value}]);
-        setTags([...tags, e?.target.value, insert]);
-        //   tags.filter((item) => setDivOption(item => [...item, {data}]) )
-        e.target.value = "";
-      }
-    if (tags.indexOf(e.target.textContent) === -1) {
-      setTags([...tags, e.target.textContent]);
-    }
-     else {
-      setTags(tags.filter((_, index) => index !== indexRemove));
-    }
-  };
-  console.log(tags)
   useEffect(() => {
     let handleDiv = () => {
       setFocus(false);
     };
     document.addEventListener("mouseup", handleDiv);
   }, []);
-  //   console.log(value)
+
+  const handleToggle = (e: any, indexRemove: any) => {
+    if (tags.indexOf(e.target.textContent) === -1) {
+      setTags([...tags, e.target.textContent]);
+    } else {
+      setTags(tags.filter((_, index) => index !== indexRemove));
+    }
+  };
+
+  const handleInsert = () => {
+    setTags((prev) => {
+      const tags = [...prev];
+      tags.push(insert);
+      return tags;
+    });
+    setInsert("");
+  };
+
   return (
     <section className="w-1/4 mx-auto px-1 mt-10">
       <div
@@ -100,13 +88,9 @@ export default function Select() {
             >
               <input
                 type="text"
-                // value={value}
-                // onChange={(event) => {
-                //   changeValue(event.target.value);
-                // }}
+                value={insert}
                 onChange={(e) => setInsert(e.target.value as any)}
                 className="outline-none border-none w-full min-w-[4px]"
-                // onKeyUp={(e) => (e.key === "Enter" ? addTags(e) : null)}
               />
             </div>
           </div>
@@ -119,7 +103,10 @@ export default function Select() {
       </div>
       <div className={`p-2 shadow mt-1 ${focus ? "visible" : "hidden"}`}>
         {insert ? (
-          <div className="cursor-pointer hover:bg-slate-100 hover:rounded p-1" onClick={(e) =>handleToggle(e)}>
+          <div
+            className="cursor-pointer hover:bg-slate-100 hover:rounded p-1"
+            onClick={handleInsert}
+          >
             {insert}
           </div>
         ) : (
