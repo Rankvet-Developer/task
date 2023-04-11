@@ -1,34 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-// let divOption = [
-//   {
-//     data: "a1",
-//   },
-//   {
-//     data: "a2",
-//   },
-//   {
-//     data: "a3",
-//   },
-//   {
-//     data: "a4",
-//   },
-// ];
+
+let initialState = [
+'a1', 'a2', 'a3', 'a4', 'c5', 'f8', 'cf', 'kf', 'de', 'fi', 'bg', 'der5'
+];
 
 export default function Select() {
-  const [focus, setFocus] = useState(false);
-  const [value, changeValue] = useState("");
-  const [tags, setTags] = useState<string[]>([]);
-  const [show, setShow] = useState(false);
-  const [divOption, setDivOption] = useState([
-    { data: "a1" },
-    { data: "a2" },
-    { data: "a3" },
-    { data: "a4" },
-  ]);
-
   const [insert, setInsert] = useState("");
+  const [focus, setFocus] = useState(false);
+  const [tags, setTags] = useState<string[]>([]);
+  const [tagList, settagList] = useState<string[]>(initialState);
 
   const removeTags = (indexRemove: any) => {
     setTags(tags.filter((_, index) => index !== indexRemove));
@@ -41,11 +23,11 @@ export default function Select() {
     document.addEventListener("mouseup", handleDiv);
   }, []);
 
-  const handleToggle = (e: any, indexRemove: any) => {
+  const handleToggle = (e: any, item: any) => {
     if (tags.indexOf(e.target.textContent) === -1) {
       setTags([...tags, e.target.textContent]);
     } else {
-      setTags(tags.filter((_, index) => index !== indexRemove));
+      setTags(tags.filter((value) => value !== item));
     }
   };
 
@@ -55,22 +37,27 @@ export default function Select() {
       tags.push(insert);
       return tags;
     });
+    settagList((prev) =>{
+      const tagList = [...prev]
+      tagList.push(insert)
+      return tagList
+    })
     setInsert("");
   };
 
   return (
     <section className="w-1/4 mx-auto px-1 mt-10">
       <div
-        className="flex justify-between items-center border rounded p-2"
+        className="border rounded p-2"
         onClick={() => setFocus(true)}
       >
-        <div className="flex">
-          <div className="flex flex-wrap gap-1">
+        <div className="flex items-center">
+        <div className="flex flex-wrap gap-1 overflow-hidden w-[95%]">
             {tags.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="flex items-center bg-[#f0f0f0] rounded mx-1"
+                  className="flex items-center bg-[#f0f0f0] rounded"
                 >
                   <span className="mx-1">{item}</span>
                   <RxCross2
@@ -81,46 +68,55 @@ export default function Select() {
                 </div>
               );
             })}
-          </div>
           <div className="inline-flex">
             <div
-              className={`w-${Math.min(Math.max(value.length, 2), 50) + "ch"}`}
+            style={{width:`${insert ? (insert.length * 8) + "px" :'4px' }`}}
             >
               <input
                 type="text"
                 value={insert}
                 onChange={(e) => setInsert(e.target.value as any)}
-                className="outline-none border-none w-full min-w-[4px]"
+                className="outline-none border-none"
+                style={{width:'100%'}}
               />
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-[5%]">
           <span>
             <AiOutlineDown />
           </span>
         </div>
+        </div>
       </div>
+
+
+      {/* list div */}
       <div className={`p-2 shadow mt-1 ${focus ? "visible" : "hidden"}`}>
         {insert ? (
           <div
-            className="cursor-pointer hover:bg-slate-100 hover:rounded p-1"
+            className="cursor-pointer hover:bg-slate-100 hover:rounded p-1 overflow-hidden"
             onClick={handleInsert}
           >
+            <span className="truncate">
             {insert}
+
+            </span>
           </div>
         ) : (
-          divOption.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="cursor-pointer hover:bg-slate-100 hover:rounded p-1"
-                onClick={(e) => handleToggle(e, index)}
-              >
-                {item.data}
-              </div>
-            );
-          })
+          <div className="h-64 overflow-hidden overflow-y-scroll">
+            {tagList.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="cursor-pointer hover:bg-slate-100 hover:rounded p-1"
+                  onClick={(e) => handleToggle(e, item)}
+                >
+                  {item}
+                </div>
+              );
+            })}
+          </div>
         )}
       </div>
     </section>
