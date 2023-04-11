@@ -13,7 +13,7 @@ export default function Contact() {
                   <div className='flex mr-12 relative before:absolute before:h-full before:border-[2px] before:left-8 before:top-5'>
                     <h1 className='relative before:absolute before:bg-[#F8147E] before:h-5 before:w-5 before:rounded-full before:left-[23px] after:bg-[#A29D9D] after:absolute after:h-8 after:w-8 after:rounded before:top-[7px] before:z-10'>01</h1>
                   </div>
-                  <div className='rounded pl-32 py-6 pr-5 h-40 bg-[#C4ADEB]'>
+                  <div className='rounded pl-32 py-6 pr-5 h-40 sm:h-full bg-[#C4ADEB] sm:pl-4'>
                       <h1 className='text-2xl mb-4'>Create Project</h1>
                       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni recusandae, voluptatem incidunt doloremque dignissimos sapiente nihil, dicta facilis suscipit distinctio beatae officia deserunt cupiditate quae maiores molestias. </p>
                   </div>
@@ -22,7 +22,7 @@ export default function Contact() {
                   <div className='flex mr-12 relative before:absolute before:h-full before:border-[2px] before:left-8 before:top-5'>
                     <h1 className='relative before:absolute before:bg-[#F8147E] before:h-5 before:w-5 before:rounded-full before:left-[23px] after:bg-[#A29D9D] after:absolute after:h-8 after:w-8 after:rounded before:top-[7px] before:z-10'>02</h1>
                   </div>
-                  <div className='rounded pl-32 py-6 pr-5 h-40 bg-[#C4ADEB]'>
+                  <div className='rounded pl-32 py-6 pr-5 h-40 bg-[#C4ADEB] sm:h-full sm:pl-4'>
                       <h1 className='text-2xl mb-4'>Create Project</h1>
                       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni recusandae, voluptatem incidunt doloremque dignissimos sapiente nihil, dicta facilis suscipit distinctio beatae officia deserunt cupiditate quae maiores molestias. </p>
                   </div>
@@ -31,7 +31,7 @@ export default function Contact() {
                   <div className='flex mr-12'>
                     <h1 className='relative before:absolute before:bg-[#F8147E] before:h-5 before:w-5 before:rounded-full before:left-[23px] after:bg-[#A29D9D] after:absolute after:h-8 after:w-8 after:rounded before:top-[7px] before:z-10'>03</h1>
                   </div>
-                  <div className='rounded pl-32 py-6 pr-5 h-40 bg-[#C4ADEB]'>
+                  <div className='rounded pl-32 py-6 pr-5 h-40 bg-[#C4ADEB] sm:h-full sm:pl-4'>
                       <h1 className='text-2xl mb-4'>Create Project</h1>
                       <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni recusandae, voluptatem incidunt doloremque dignissimos sapiente nihil, dicta facilis suscipit distinctio beatae officia deserunt cupiditate quae maiores molestias. </p>
                   </div>

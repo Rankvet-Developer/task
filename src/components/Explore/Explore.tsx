@@ -74,35 +74,35 @@ export default function Explore() {
         </div>
         <div className="">
           <Slider {...settings}>
-            <div>
-                <Image src="/slide1.png" alt="" width={215} height={215} />
+            <div className="relative h-56 w-56">
+                <Image src="/slide1.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide2.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide2.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide3.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide3.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide4.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide4.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide5.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide5.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide1.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide1.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide2.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide2.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide3.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide3.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide4.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide4.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
-            <div>
-                <Image src="/slide5.png" alt="" width={215} height={215} />
+            <div className="sm:w-full relative h-56 w-56">
+                <Image src="/slide5.png" alt="" fill className="p-3 sm:p-0"/>
             </div>
           </Slider>
         </div>
