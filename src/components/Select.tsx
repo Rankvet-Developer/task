@@ -1,21 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
 
 let initialState = [
-'a1', 'a2', 'a3', 'a4', 'c5', 'f8', 'cf', 'kf', 'de', 'fi', 'bg', 'der5'
+  "a1",
+  "a2",
+  "a3",
+  "a4",
+  "c5",
+  "f8",
+  "cf",
+  "kf",
+  "de",
+  "fi",
+  "bg",
+  "der5",
 ];
 
 export default function Select() {
   const [insert, setInsert] = useState("");
   const [focus, setFocus] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
-  const [tagList, settagList] = useState<string[]>(initialState);
+  const [tagList, setTagList] = useState<string[]>(initialState);
+
+  const selectRef = useRef(null);
 
   const removeTags = (indexRemove: any) => {
     setTags(tags.filter((_, index) => index !== indexRemove));
   };
 
+  function handleDivClick() {
+    selectRef?.current?.focus();
+  }
   useEffect(() => {
     let handleDiv = () => {
       setFocus(false);
@@ -31,77 +47,83 @@ export default function Select() {
     }
   };
 
-  const handleInsert = () => {
+  const handleInsert = (e: any) => {
     setTags((prev) => {
       const tags = [...prev];
-      tags.push(insert);
+      if (tags.includes(e.target.textContent) === false) {
+        tags.push(insert);
+      }
       return tags;
     });
-    settagList((prev) =>{
-      const tagList = [...prev]
-      tagList.push(insert)
-      return tagList
-    })
+    setTagList((prev) => {
+      const tagList = [...prev];
+      if (tagList.includes(e.target.textContent) === false) {
+        tagList.push(insert);
+      }
+      return tagList;
+    });
     setInsert("");
   };
-
+  console.log(insert.trim().length !== 1);
   return (
     <section className="w-1/4 mx-auto px-1 mt-10">
+      {/* tags div */}
       <div
-        className="border rounded p-2"
+        className="border rounded p-2 cursor-text hover:border hover:border-blue-400"
         onClick={() => setFocus(true)}
       >
-        <div className="flex items-center">
-        <div className="flex flex-wrap gap-1 overflow-hidden w-[95%]">
+        <div className="flex items-center" onClick={handleDivClick}>
+          <div className="flex flex-wrap gap-1 w-[95%]">
             {tags.map((item, index) => {
               return (
                 <div
                   key={index}
-                  className="flex items-center bg-[#f0f0f0] rounded"
+                  className="flex items-center bg-[#f0f0f0] rounded truncate"
                 >
-                  <span className="mx-1">{item}</span>
+                  <span className="mx-1 overflow-hidden">{item}</span>
+                  <span>
                   <RxCross2
                     size={15}
                     className="cursor-pointer"
                     onClick={() => removeTags(index)}
                   />
+                  </span>
                 </div>
               );
             })}
-          <div className="inline-flex">
-            <div
-            style={{width:`${insert ? (insert.length * 8) + "px" :'4px' }`}}
-            >
-              <input
-                type="text"
-                value={insert}
-                onChange={(e) => setInsert(e.target.value as any)}
-                className="outline-none border-none"
-                style={{width:'100%'}}
-              />
+            <div className="inline-flex overflow-hidden">
+              <div
+                style={{
+                  width: `${insert ? insert.length * 8 + "px" : "4px"}`,
+                }}
+              >
+                <input
+                  type="text"
+                  value={insert}
+                  onChange={(e) => setInsert(e.target.value as any)}
+                  className="outline-none border-none"
+                  style={{ width: "100%" }}
+                  ref={selectRef}
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="w-[5%]">
-          <span>
-            <AiOutlineDown />
-          </span>
-        </div>
+          <div className="w-[5%]">
+            <span>
+              <AiOutlineDown />
+            </span>
+          </div>
         </div>
       </div>
-
 
       {/* list div */}
       <div className={`p-2 shadow mt-1 ${focus ? "visible" : "hidden"}`}>
         {insert ? (
           <div
-            className="cursor-pointer hover:bg-slate-100 hover:rounded p-1 overflow-hidden"
-            onClick={handleInsert}
+            className="cursor-pointer hover:bg-slate-100 hover:rounded p-1 overflow-hidden truncate"
+            onClick={(e) => handleInsert(e)}
           >
-            <span className="truncate">
-            {insert}
-
-            </span>
+            <span>{insert}</span>
           </div>
         ) : (
           <div className="h-64 overflow-hidden overflow-y-scroll">
@@ -109,7 +131,9 @@ export default function Select() {
               return (
                 <div
                   key={index}
-                  className="cursor-pointer hover:bg-slate-100 hover:rounded p-1"
+                  className={`cursor-pointer hover:bg-slate-100 hover:rounded p-1 ${
+                    insert ? "bg-blue-300" : ""
+                  }`}
                   onClick={(e) => handleToggle(e, item)}
                 >
                   {item}
